@@ -59,5 +59,5 @@ class RegisterUserForm(UserForm):
 
 
 class EditUserForm(UserForm):
-    is_admin = BooleanField(gettext('Admin'))
-    active = BooleanField(gettext('Activated'))
+    is_admin = BooleanField(('Admin'))
+    active = BooleanField(('Activated'))
