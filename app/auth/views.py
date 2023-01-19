@@ -1,7 +1,6 @@
 from flask import (
     current_app, request, redirect, url_for, render_template, flash, abort,
 )
-from flask_babel import gettext
 from flask_login import login_user, login_required, logout_user
 from itsdangerous import URLSafeSerializer, BadSignature
 from app.extensions import lm
@@ -23,7 +22,7 @@ def login():
     if form.validate_on_submit():
         login_user(form.user)
         flash(
-            gettext(
+            (
                 'You were logged in as {username}'.format(
                     username=form.user.username
                 ),
@@ -38,7 +37,7 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash(gettext('You were logged out'), 'success')
+    flash(('You were logged out'), 'success')
     return redirect(url_for('.login'))
 
 
@@ -60,7 +59,7 @@ def register():
         send_registration_email.queue(user.id, token)
 
         flash(
-            gettext(
+            (
                 'Sent verification email to {email}'.format(
                     email=user.email
                 )
@@ -87,7 +86,7 @@ def verify(token):
         user.update()
 
         flash(
-            gettext(
+            (
                 'Registered user {username}. Please login to continue.'.format(
                     username=user.username
                 ),
