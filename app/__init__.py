@@ -5,7 +5,6 @@ import arrow
 import requests
 
 from app import config
-from app.assets import assets
 from app.auth import auth
 from app.commands import create_db, drop_db, populate_db, recreate_db
 from app.database import db
@@ -25,12 +24,6 @@ def create_app(config=config.base_config):
     register_jinja_env(app)
     register_commands(app)
 
-    def get_locale():
-        """Returns the locale to be used for the incoming request."""
-        return request.accept_languages.best_match(config.SUPPORTED_LOCALES)
-
-    if babel.locale_selector_func is None:
-        babel.locale_selector_func = get_locale
 
     @app.before_request
     def before_request():
@@ -60,7 +53,6 @@ def register_extensions(app):
     lm.init_app(app)
     mail.init_app(app)
     bcrypt.init_app(app)
-    assets.init_app(app)
     babel.init_app(app)
     rq.init_app(app)
     migrate.init_app(app, db)
