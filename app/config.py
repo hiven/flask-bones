@@ -6,7 +6,7 @@ class base_config(object):
     SITE_NAME = os.environ.get('APP_NAME', 'Flask Bones')
 
     SECRET_KEY = os.environ.get('SECRET_KEY', 'secrets')
-    SERVER_NAME = os.environ.get('SERVER_NAME', 'app.docker:5000')
+    # SERVER_NAME = os.environ.get('SERVER_NAME', 'app.docker:5000')
 
     MAIL_SERVER = os.environ.get('MAIL_SERVER', 'mail')
     MAIL_PORT = os.environ.get('MAIL_PORT', 1025)
