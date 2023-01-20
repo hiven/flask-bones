@@ -19,7 +19,6 @@ def create_app(config=config.base_config):
     register_extensions(app)
     register_blueprints(app)
     register_errorhandlers(app)
-    register_jinja_env(app)
     register_commands(app)
 
 
