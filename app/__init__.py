@@ -8,7 +8,7 @@ from app import config
 from app.auth import auth
 from app.commands import create_db, drop_db, populate_db, recreate_db
 from app.database import db
-from app.extensions import lm, travis, mail, migrate, bcrypt, babel, rq, limiter
+from app.extensions import lm, travis, mail, migrate, bcrypt, rq, limiter
 from app.user import user
 
 def create_app(config=config.base_config):
