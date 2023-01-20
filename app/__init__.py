@@ -74,11 +74,3 @@ def register_errorhandlers(app):
         requests.codes.UNAUTHORIZED,
     ]:
         app.errorhandler(e)(render_error)
-
-
-def register_jinja_env(app):
-    """Configure the Jinja env to enable some functions in templates."""
-    app.jinja_env.globals.update({
-        'timeago': lambda x: arrow.get(x).humanize(),
-        'url_for_other_page': url_for_other_page,
-    })
