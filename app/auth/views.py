@@ -56,7 +56,7 @@ def register():
         s = URLSafeSerializer(current_app.secret_key)
         token = s.dumps(user.id)
 
-        send_registration_email.queue(user.id, token)
+        send_registration_email(user.id, token)
 
         flash(
             (
