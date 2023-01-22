@@ -5,7 +5,7 @@ from app.extensions import mail, rq
 from app.user.models import User
 
 
-@rq.job
+#@rq.job
 def send_registration_email(uid, token):
     """Sends a registratiion email to the given uid."""
     user = User.query.filter_by(id=uid).first()
