@@ -6,6 +6,7 @@ import requests
 
 from app import config
 from app.auth import auth
+from app.home import home #testing this?
 from app.commands import create_db, drop_db, populate_db, recreate_db
 from app.database import db
 from app.extensions import lm, travis, mail, migrate, bcrypt, rq, limiter
