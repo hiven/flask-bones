@@ -57,15 +57,18 @@ def register():
         token = s.dumps(user.id)
 
         send_registration_email(user.id, token)
+        
+        await mail.send_message(message)
+        return jsonify(status_code=200, content={"message": "email has been sent"})
 
-        flash(
-            (
-                'Sent verification email to {email}'.format(
-                    email=user.email
-                )
-            ),
-            'success'
-        )
+        #flash(
+         #   (
+          #      'Sent verification email to {email}'.format(
+           #         email=user.email
+            #    )
+           # ),
+           # 'success'
+        #)
         return redirect(url_for('home.index'))
     return render_template('register.html', form=form)
 
