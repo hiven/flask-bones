@@ -12,6 +12,7 @@ class base_config(object):
     MAIL_PORT = os.environ.get('MAIL_PORT', 1025)
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME', 1025)
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD', 1025)
+    MAIL_DEFAULT_SENDER = os.environ.get('MAIL_PASSWORD', 'your-email@your-domain.com')
 
     REDIS_HOST = os.environ.get('REDIS_HOST', 'redis')
     REDIS_PORT = os.environ.get('REDIS_PORT', 6379)
