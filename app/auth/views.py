@@ -58,9 +58,6 @@ def register():
 
         send_registration_email(user.id, token)
         
-        await mail.send_message(message)
-        return jsonify(status_code=200, content={"message": "email has been sent"})
-
         flash(
             (
                 'Sent verification email to {email}'.format(
