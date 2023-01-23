@@ -59,6 +59,7 @@ def register_blueprints(app):
     """Register blueprints with the Flask application."""
     app.register_blueprint(user, url_prefix='/user')
     app.register_blueprint(auth)
+    app.register_blueprint(home)
 
 
 def register_errorhandlers(app):
