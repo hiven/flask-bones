@@ -29,10 +29,10 @@ def create_app(config=config.base_config):
         g.request_time = lambda: '%.5fs' % (time.time() - g.request_start_time)
         g.pjax = 'X-PJAX' in request.headers
 
-    @app.route('/', methods=['GET'])
-    def index():
-        """Returns the applications index page."""
-        return render_template('index.html')
+#    @app.route('/', methods=['GET'])
+#    def index():
+#        """Returns the applications index page."""
+#        return render_template('index.html')
 
     return app
 
