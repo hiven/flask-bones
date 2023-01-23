@@ -28,11 +28,11 @@ from app.user.models import User
 async def send_registration_email(uid, token):
 
     user = User.query.filter_by(id=uid).first()
-        msg = Message(
+    msg = Message(
         subject="Flask-Mailing module",
         recipients=[user.email],
         body="This is the basic email body",
-        )    
+    )    
 
     await mail.send_message(msg)
     return jsonify(status_code=200, content={"message": "email has been sent"})
