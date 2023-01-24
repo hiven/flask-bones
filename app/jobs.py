@@ -11,7 +11,7 @@ def send_registration_email(uid, token):
     user = User.query.filter_by(id=uid).first()
     msg = Message(
         'User Registration',
-        sender='admin@flask-bones.com',
+      #  sender='admin@flask-bones.com',
         recipients=[user.email]
     )
     msg.body = render_template(
