@@ -21,14 +21,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         login_user(form.user)
-        flash(
-            (
-                'You were logged in as {username}'.format(
-                    username=form.user.username
-                ),
-            ),
-            'success'
-        )
+        flash(('You were logged in as {username}'.format(username=form.user.username),),'success')
         return redirect(request.args.get('next') or url_for('home.index'))
     return render_template('login.html', form=form)
 
@@ -45,27 +38,16 @@ def logout():
 def register():
     form = RegisterUserForm()
     if form.validate_on_submit():
-
         user = User.create(
             username=form.data['username'],
             email=form.data['email'],
             password=form.data['password'],
             remote_addr=request.remote_addr,
         )
-
         s = URLSafeSerializer(current_app.secret_key)
         token = s.dumps(user.id)
-
         send_registration_email(user.id, token)
-        
-        flash(
-            (
-                'Sent verification email to {email}'.format(
-                    email=user.email
-                )
-            ),
-            'success'
-        )
+        flash(('Sent verification email to {email}'.format(email=user.email)),'success')
         return redirect(url_for('home.index'))
     return render_template('register.html', form=form)
 
@@ -77,20 +59,29 @@ def verify(token):
         id = s.loads(token)
     except BadSignature:
         abort(404)
-
     user = User.query.filter_by(id=id).first_or_404()
     if user.active:
         abort(404)
     else:
         user.active = True
         user.update()
-
-        flash(
-            (
-                'Registered user {username}. Please login to continue.'.format(
-                    username=user.username
-                ),
-            ),
-            'success'
-        )
+        flash(('Registered user {username}. Please login to continue.'.format(username=user.username),),'success')
         return redirect(url_for('auth.login'))
+  
+# NEW!
+@auth.route('/resetpassword', methods=['GET', 'POST'])
+def resetpassword():
+    form = RegisterUserForm()
+    if form.validate_on_submit():
+        user = User.create(
+            username=form.data['username'],
+            email=form.data['email'],
+            password=form.data['password'],
+            remote_addr=request.remote_addr,
+        )
+        s = URLSafeSerializer(current_app.secret_key)
+        token = s.dumps(user.id)
+        send_registration_email(user.id, token)
+        flash(('Sent verification email to {email}'.format(email=user.email)),'success')
+        return redirect(url_for('home.index'))
+    return render_template('register.html', form=form)
