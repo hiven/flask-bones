@@ -71,7 +71,7 @@ def verify(token):
 # NEW!
 @auth.route('/resetpassword', methods=['GET', 'POST'])
 def resetpassword():
-    form = RegisterUserForm()
+    form = ResetPasswordForm()
     if form.validate_on_submit():
         user = User.create(
             username=form.data['username'],
